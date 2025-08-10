@@ -1,0 +1,13 @@
+# Nix + direnv files
+.envrc
+.direnv
+
+# Editor specific files
+Session.vim
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Build artifacts
+web/static/output.css
