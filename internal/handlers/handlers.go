@@ -13,10 +13,11 @@ func LoadHanders(router *http.ServeMux) {
 		tmpl.Execute(w, nil)
 	})
 
-	api := http.NewServeMux()
-	api.Handle("/api/", http.StripPrefix("/api", router))
+	apiRouter := http.NewServeMux()
 
-	router.HandleFunc("GET /greeting", routes.GreetingHandler)
-	router.HandleFunc("GET /time", routes.TimeHandler)
-	router.HandleFunc("GET /api/stats", routes.StatsHandler)
+	apiRouter.HandleFunc("GET /greeting", routes.GreetingHandler)
+	apiRouter.HandleFunc("GET /time", routes.TimeHandler)
+	apiRouter.HandleFunc("GET /stats", routes.StatsHandler)
+
+	router.Handle("/api/", http.StripPrefix("/api", apiRouter))
 }
