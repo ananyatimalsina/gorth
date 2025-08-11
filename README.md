@@ -27,7 +27,7 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 │       └── middleware.go   # Middleware composition
 ├── web/
 │   ├── static/             # Static assets
-│   │   └── main.css        # Tailwind input file
+│   │   └── main.css        #  input file
 │   └── templates/          # HTML templates
 │       ├── index.html      # Main page
 │       ├── greeting.html   # HTMX fragment
@@ -37,7 +37,7 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 ├── .air.toml               # Air configuration
 ├── go.mod                  # Go dependencies
 ├── main.go                 # Application entrypoint
-├── package.json            # Node.js dependencies (Tailwind)
+├── package.json            # Node.js dependencies ()
 └── shell.nix               # Nix development environment
 ```
 
@@ -46,7 +46,7 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 ### Prerequisites
 
 - Go
-- Node.js (for Tailwind CSS)
+- Node.js (for  CSS)
 - Optional: Nix (for reproducible development environment)
 
 ### 1. Clone Template
@@ -63,7 +63,7 @@ cd gorth
 # Go dependencies
 go mod tidy
 
-# Node.js dependencies (for Tailwind)
+# Node.js dependencies (for )
 npm install
 ```
 
@@ -82,7 +82,7 @@ nano .env
 air
 
 # Option 2: Manual commands (no live reload)
-npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css"
+npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --minify
 go run main.go
 ```
 
@@ -213,10 +213,10 @@ When adding new Tailwind classes:
 
 ```bash
 # Rebuild CSS
-npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --watch
+npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --minify
 
-# Or use the debug script which includes CSS build
-./debug.sh
+# Or use air which includes CSS build
+air
 ```
 
 ### Database Models
