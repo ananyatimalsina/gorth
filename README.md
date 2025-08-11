@@ -34,7 +34,7 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 │       ├── stats.html      # HTMX fragment  
 │       └── time.html       # HTMX fragment
 ├── .env                    # Environment variables
-├── debug.sh                # Development build script
+├── .air.toml               # Air configuration
 ├── go.mod                  # Go dependencies
 ├── main.go                 # Application entrypoint
 ├── package.json            # Node.js dependencies (Tailwind)
@@ -53,8 +53,8 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 
 ```bash
 # Use this repository as a GitHub template
-git clone <your-repo-url>
-cd <your-project-name>
+git clone https://github.com/ananyatimalsina/gorth
+cd gorth
 ```
 
 ### 2. Install Dependencies
@@ -78,11 +78,10 @@ nano .env
 ### 4. Run Development Server
 
 ```bash
-# Option 1: Use the debug script
-chmod +x debug.sh
-./debug.sh
+# Option 1: Use air live reload
+air
 
-# Option 2: Manual commands
+# Option 2: Manual commands (no live reload)
 npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css"
 go run main.go
 ```

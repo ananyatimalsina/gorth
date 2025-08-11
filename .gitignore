@@ -11,3 +11,6 @@ package-lock.json
 
 # Build artifacts
 web/static/output.css
+
+# Temporary files
+tmp/
