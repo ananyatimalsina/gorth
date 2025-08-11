@@ -160,7 +160,7 @@ func ExampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // Register in handlers.go
-router.HandleFunc("GET /api/example", routes.ExampleHandler)
+apiRouter.HandleFunc("GET /example", routes.ExampleHandler)
 ```
 
 ### Adding Middleware
