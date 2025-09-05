@@ -1,4 +1,4 @@
-# Gorth Stack Template
+# Gortth Stack Template
 
 A modern, full-stack web development template combining **Go**, **GORM**, **Templ**, **Tailwind CSS**, and **HTMX** for rapid, efficient web application development.
 
