@@ -1,11 +1,12 @@
 # Gorth Stack Template
 
-A modern, full-stack web development template combining **Go**, **GORM**, **Tailwind CSS**, and **HTMX** for rapid, efficient web application development.
+A modern, full-stack web development template combining **Go**, **GORM**, **Templ**, **Tailwind CSS**, and **HTMX** for rapid, efficient web application development.
 
 ## Tech Stack
 
 - **Go** - Backend server with stdlib HTTP routing
 - **GORM** - Go ORM for database operations 
+- **Templ** - DX focused and typesafe templating engine
 - **Tailwind CSS** - Utility-first CSS framework
 - **HTMX** - Dynamic web applications without complex JavaScript
 
@@ -29,10 +30,10 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 │   ├── static/             # Static assets
 │   │   └── main.css        #  input file
 │   └── templates/          # HTML templates
-│       ├── index.html      # Main page
-│       ├── greeting.html   # HTMX fragment
-│       ├── stats.html      # HTMX fragment  
-│       └── time.html       # HTMX fragment
+│       ├── index.templ     # Main page
+│       ├── greeting.templ  # AJAX fragment
+│       ├── stats.templ     # AJAX fragment  
+│       └── time.templ      # AJAX fragment
 ├── .env                    # Environment variables
 ├── .air.toml               # Air configuration
 ├── go.mod                  # Go dependencies
@@ -53,8 +54,8 @@ A modern, full-stack web development template combining **Go**, **GORM**, **Tail
 
 ```bash
 # Use this repository as a GitHub template
-git clone https://github.com/ananyatimalsina/gorth
-cd gorth
+git clone https://github.com/ananyatimalsina/gortth
+cd gortth
 ```
 
 ### 2. Install Dependencies
@@ -78,15 +79,16 @@ nano .env
 ### 4. Run Development Server
 
 ```bash
-# Option 1: Use air live reload
-air
+# Option 1: Use live reload
+chmod +x ./run.sh && ./run.sh
 
 # Option 2: Manual commands (no live reload)
+templ generate
 npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --minify
 go run main.go
 ```
 
-Visit `http://localhost:8080` to see the demo page.
+Visit `http://localhost:3000` to see the demo page.
 
 ### 6. Nix Development Environment (Optional)
 
@@ -143,24 +145,16 @@ The template demonstrates HTMX patterns:
 Example:
 
 ```go
-// internal/handlers/routes/example.go
-package routes
+// internal/handlers/handlers.go
+package handlers
 
 import (
-    "html/template"
     "net/http"
+    "github.com/a-h/templ"
+    "gortth/web/templates"
 )
 
-func ExampleHandler(w http.ResponseWriter, r *http.Request) {
-    tmpl := template.Must(template.ParseFiles("web/templates/example.html"))
-    data := map[string]interface{}{
-        "Message": "Hello from HTMX!",
-    }
-    tmpl.Execute(w, data)
-}
-
-// Register in handlers.go
-apiRouter.HandleFunc("GET /example", routes.ExampleHandler)
+apiRouter.Handle("GET /example", templ.Handler(templates.Example()))
 ```
 
 ### Adding Middleware
@@ -216,7 +210,7 @@ When adding new Tailwind classes:
 npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --minify
 
 # Or use air which includes CSS build
-air
+./run.sh
 ```
 
 ### Database Models
@@ -246,6 +240,9 @@ func migrateModels(db *gorm.DB) {
 ### Build Process
 
 ```bash
+# Generate templates
+templ generate
+
 # Build CSS
 npx @tailwindcss/cli -i "./web/static/main.css" -o "./web/static/output.css" --minify
 

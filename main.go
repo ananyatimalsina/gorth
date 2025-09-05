@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gorth/internal/handlers"
-	"gorth/internal/middleware"
+	"gortth/internal/handlers"
+	"gortth/internal/middleware"
 	"log"
 	"net/http"
 	"os"

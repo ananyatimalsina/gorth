@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"html/template"
+	"gortth/web/templates"
 	"net/http"
 	"time"
 )
@@ -18,9 +18,5 @@ func GreetingHandler(w http.ResponseWriter, r *http.Request) {
 	currentTime := time.Now()
 	greeting := greetings[currentTime.Second()%len(greetings)]
 
-	tmpl := template.Must(template.ParseFiles("web/templates/greeting.html"))
-	tmpl.Execute(w, map[string]any{
-		"Message":   greeting,
-		"Timestamp": currentTime.Format("15:04:05"),
-	})
+	templates.Greeting(greeting, currentTime.Format("15:04:05")).Render(r.Context(), w)
 }

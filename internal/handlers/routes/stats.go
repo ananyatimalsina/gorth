@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"html/template"
+	"gortth/web/templates"
 	"net/http"
 	"runtime"
 	"time"
@@ -20,15 +20,14 @@ func StatsHandler(w http.ResponseWriter, r *http.Request) {
 	totalAllocMB := float64(m.TotalAlloc) / 1024 / 1024
 	sysMB := float64(m.Sys) / 1024 / 1024
 
-	tmpl := template.Must(template.ParseFiles("web/templates/stats.html"))
-	tmpl.Execute(w, map[string]any{
-		"GoVersion":    runtime.Version(),
-		"CpuCores":     runtime.NumCPU(),
-		"Goroutines":   runtime.NumGoroutine(),
-		"Uptime":       uptime.Round(time.Second).String(),
-		"CurrentAlloc": allocMB,
-		"TotalAlloc":   totalAllocMB,
-		"SystemMemory": sysMB,
-		"GcCycles":     m.NumGC,
-	})
+	templates.Stats(templates.StatsProps{
+		GoVersion:    runtime.Version(),
+		CpuCores:     runtime.NumCPU(),
+		Goroutines:   runtime.NumGoroutine(),
+		Uptime:       uptime.Round(time.Second).String(),
+		CurrentAlloc: allocMB,
+		TotalAlloc:   totalAllocMB,
+		SystemMemory: sysMB,
+		GcCycles:     m.NumGC,
+	}).Render(r.Context(), w)
 }

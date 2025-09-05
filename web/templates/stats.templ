@@ -1,0 +1,41 @@
+package templates
+
+type StatsProps struct {
+	GoVersion    string
+	CpuCores     int
+	Goroutines   int
+	Uptime       string
+	CurrentAlloc float64
+	TotalAlloc   float64
+	SystemMemory float64
+	GcCycles     uint32
+}
+
+templ Stats(props StatsProps) {
+	<div class="text-center">
+		<div class="text-2xl font-bold text-purple-600 mb-4">📊 Server Statistics</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="bg-purple-50 p-4 rounded-lg">
+				<div class="text-lg font-semibold text-purple-800 mb-2">System Info</div>
+				<div class="space-y-1 text-sm">
+					<div><strong>Go Version:</strong> { props.GoVersion }</div>
+					<div><strong>CPU Cores:</strong> { props.CpuCores }</div>
+					<div><strong>Goroutines:</strong> { props.Goroutines }</div>
+					<div><strong>Uptime:</strong> { props.Uptime }</div>
+				</div>
+			</div>
+			<div class="bg-purple-50 p-4 rounded-lg">
+				<div class="text-lg font-semibold text-purple-800 mb-2">Memory Usage</div>
+				<div class="space-y-1 text-sm">
+					<div><strong>Current Alloc:</strong> { props.CurrentAlloc } MB</div>
+					<div><strong>Total Alloc:</strong> { props.TotalAlloc } MB</div>
+					<div><strong>System Memory:</strong> { props.SystemMemory } MB</div>
+					<div><strong>GC Cycles:</strong> { props.GcCycles }</div>
+				</div>
+			</div>
+		</div>
+		<div class="mt-4 p-3 bg-purple-50 rounded-lg">
+			<span class="text-purple-800 font-medium">✅ HTMX GET request successful!</span>
+		</div>
+	</div>
+}

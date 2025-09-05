@@ -1,17 +1,16 @@
 package handlers
 
 import (
-	"gorth/internal/handlers/routes"
-	"html/template"
+	"gortth/internal/handlers/routes"
+	"gortth/web/templates"
 	"net/http"
+
+	"github.com/a-h/templ"
 )
 
 func LoadHanders(router *http.ServeMux) {
 	// Index page
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("web/templates/index.html"))
-		tmpl.Execute(w, nil)
-	})
+	router.Handle("/", templ.Handler(templates.Index()))
 
 	apiRouter := http.NewServeMux()
 

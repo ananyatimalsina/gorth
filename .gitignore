@@ -14,3 +14,6 @@ web/static/output.css
 
 # Temporary files
 tmp/
+
+# Templ files
+*_templ.go

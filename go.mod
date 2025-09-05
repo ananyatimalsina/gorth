@@ -1,8 +1,9 @@
-module gorth
+module gortth
 
 go 1.24.5
 
 require (
+	github.com/a-h/templ v0.3.943 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
